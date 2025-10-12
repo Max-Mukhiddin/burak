@@ -1,4 +1,4 @@
-// MIT TASK 
+// // MIT TASK G
 
 // function getHighestIndex(arr: number[]): number {
 //   if (arr.length === 0) return -1; // bo‘sh array bo‘lsa, -1 qaytaradi
