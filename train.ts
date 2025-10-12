@@ -21,4 +21,3 @@
 // console.log(getHighestIndex([3, 7, 2, 1])); // 1
 // console.log(getHighestIndex([10, 10, 9])); // 0
 // console.log(getHighestIndex([])); // -1
-console.log("salom");
