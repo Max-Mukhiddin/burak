@@ -21,3 +21,16 @@
 // console.log(getHighestIndex([3, 7, 2, 1])); // 1
 // console.log(getHighestIndex([10, 10, 9])); // 0
 // console.log(getHighestIndex([])); // -1
+
+
+
+
+// MIT H-TASK
+function getPositive(arr: number[]): string {
+  return arr.filter((num) => num >= 0).join("");
+}
+
+console.log(getPositive([1, -4, 2]));
+console.log(getPositive([-1, -2, -3]));
+console.log(getPositive([5, 0, 8]));
+console.log(getPositive([10, -10, 3]));
