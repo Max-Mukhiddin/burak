@@ -25,12 +25,22 @@
 
 
 
-// MIT H-TASK
-function getPositive(arr: number[]): string {
-  return arr.filter((num) => num >= 0).join("");
-}
+// // MIT H-TASK
+// function getPositive(arr: number[]): string {
+//   return arr.filter((num) => num >= 0).join("");
+// }
 
-console.log(getPositive([1, -4, 2]));
-console.log(getPositive([-1, -2, -3]));
-console.log(getPositive([5, 0, 8]));
-console.log(getPositive([10, -10, 3]));
+// console.log(getPositive([1, -4, 2]));
+// console.log(getPositive([-1, -2, -3]));
+// console.log(getPositive([5, 0, 8]));
+// console.log(getPositive([10, -10, 3]));
+
+
+
+// MIT H-2 task
+export function getDigits(input: string): string {
+
+  return (input.match(/\d/g) || []).join('');
+}
+console.log(getDigits("b5u74y6"));
+console.log(getDigits("e78hf87"));
