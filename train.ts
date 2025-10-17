@@ -1,3 +1,15 @@
+/* Project Standards:
+ - Logging standards:
+ - Naming Standards:
+    function, method, variable =>  CAMEL      goHome
+    class => PASCAL     MemberService
+    folder => KEBAB
+    css => SNAKE        button_style
+    - Error handling:
+
+*/
+
+
 // // MIT TASK G
 
 // function getHighestIndex(arr: number[]): number {
