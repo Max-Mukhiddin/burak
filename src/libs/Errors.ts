@@ -10,21 +10,21 @@ export enum HttpCode {
 }
 
 export enum Message {
-SOMETHING_WENT_WRONG = "Something went wrong!",
-NO_DATA_FOUND = "No data is found!",
-CREATE_FAILED = "Create is failed!",
-UPDATE_FAILED = "Update is failed!",
+  SOMETHING_WENT_WRONG = "Something went wrong!",
+  NO_DATA_FOUND = "No data is found!",
+  CREATE_FAILED = "Create is failed!",
+  UPDATE_FAILED = "Update is failed!",
 }
 
 class Errors extends Error {
-    public code: HttpCode;
-    public message: Message;
+  public code: HttpCode;
+  public message: Message;
 
-    constructor(statusCode: HttpCode, statusMessage: Message) {
-        super();
-        this.code = statusCode;
-        this.message = statusMessage;
-    }
+  constructor(statusCode: HttpCode, statusMessage: Message) {
+    super();
+    this.code = statusCode;
+    this.message = statusMessage;
+  }
 }
 
 export default Errors;
