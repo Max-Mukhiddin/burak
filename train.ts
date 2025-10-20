@@ -9,7 +9,6 @@
 
 */
 
-
 // // MIT TASK G
 
 // function getHighestIndex(arr: number[]): number {
@@ -34,9 +33,6 @@
 // console.log(getHighestIndex([10, 10, 9])); // 0
 // console.log(getHighestIndex([])); // -1
 
-
-
-
 // // MIT H-TASK
 // function getPositive(arr: number[]): string {
 //   return arr.filter((num) => num >= 0).join("");
@@ -47,12 +43,35 @@
 // console.log(getPositive([5, 0, 8]));
 // console.log(getPositive([10, -10, 3]));
 
+// // MIT H-2 task
+// export function getDigits(input: string): string {
 
+//   return (input.match(/\d/g) || []).join('');
+// }
+// console.log(getDigits("b5u74y6"));
+// console.log(getDigits("e78hf87"));
 
-// MIT H-2 task
-export function getDigits(input: string): string {
+//.  MIT task I
 
-  return (input.match(/\d/g) || []).join('');
+function majorityElement(arr: number[]): number | null {
+  const count: Record<number, number> = {};
+
+  for (const num of arr) {
+    count[num] = (count[num] || 0) + 1;
+  }
+
+  let maxCount = 0;
+  let majority: number | null = null;
+
+  for (const num in count) {
+    if (count[num] > maxCount) {
+      maxCount = count[num];
+      majority = Number(num);
+    }
+  }
+
+  return majority;
 }
-console.log(getDigits("b5u74y6"));
-console.log(getDigits("e78hf87"));
+
+// ✅ Test
+console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4])); // 👉 4
