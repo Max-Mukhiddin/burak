@@ -8,6 +8,17 @@
     - Error handling:
 
 */
+/* 
+Traditional API
+Rest Api
+GraphQL API
+*/
+
+/*
+
+Traditional FD => SSR => EJS
+Modern FD => SPA
+ */
 
 // // MIT TASK G
 
