@@ -20,6 +20,12 @@ Traditional FD => SSR => EJS
 Modern FD => SPA
  */
 
+/*
+request join
+self destroy
+
+*/
+
 // // MIT TASK G
 
 // function getHighestIndex(arr: number[]): number {
@@ -87,20 +93,40 @@ Modern FD => SPA
 // // ✅ Test
 // console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4])); // 👉 4
 
+// // MIT task J
+
+// function findLongestWord(str: string): string {
+//   const words = str.split(" "); 
+//   let longestWord = "";
+
+//   for (const word of words) {
+//     if (word.length > longestWord.length) {
+//       longestWord = word;
+//     }
+//   }
+
+//   return longestWord;
+// }
+
+// // Test
+// console.log(findLongestWord("I come from Uzbekistan")); //  "Uzbekistan"
 
 
-function findLongestWord(str: string): string {
-  const words = str.split(" "); 
-  let longestWord = "";
 
-  for (const word of words) {
-    if (word.length > longestWord.length) {
-      longestWord = word;
+// MIT TASK - K
+function countVowels(str: string): number {
+  const vowels = "aeiouAEIOU";
+  let count = 0;
+
+  for (const char of str) {
+    if (vowels.includes(char)) {
+      count++;
     }
   }
 
-  return longestWord;
+  return count;
 }
 
 // Test
-console.log(findLongestWord("I come from Uzbekistan")); //  "Uzbekistan"
+console.log(countVowels("string")); // Output: 1
+console.log(countVowels("Hello World")); // Output: 3
