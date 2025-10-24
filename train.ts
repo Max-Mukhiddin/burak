@@ -62,27 +62,45 @@ Modern FD => SPA
 // console.log(getDigits("b5u74y6"));
 // console.log(getDigits("e78hf87"));
 
-//.  MIT task I
+// //.  MIT task I
 
-function majorityElement(arr: number[]): number | null {
-  const count: Record<number, number> = {};
+// function majorityElement(arr: number[]): number | null {
+//   const count: Record<number, number> = {};
 
-  for (const num of arr) {
-    count[num] = (count[num] || 0) + 1;
-  }
+//   for (const num of arr) {
+//     count[num] = (count[num] || 0) + 1;
+//   }
 
-  let maxCount = 0;
-  let majority: number | null = null;
+//   let maxCount = 0;
+//   let majority: number | null = null;
 
-  for (const num in count) {
-    if (count[num] > maxCount) {
-      maxCount = count[num];
-      majority = Number(num);
+//   for (const num in count) {
+//     if (count[num] > maxCount) {
+//       maxCount = count[num];
+//       majority = Number(num);
+//     }
+//   }
+
+//   return majority;
+// }
+
+// // ✅ Test
+// console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4])); // 👉 4
+
+
+
+function findLongestWord(str: string): string {
+  const words = str.split(" "); 
+  let longestWord = "";
+
+  for (const word of words) {
+    if (word.length > longestWord.length) {
+      longestWord = word;
     }
   }
 
-  return majority;
+  return longestWord;
 }
 
-// ✅ Test
-console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4])); // 👉 4
+// Test
+console.log(findLongestWord("I come from Uzbekistan")); //  "Uzbekistan"
