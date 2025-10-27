@@ -8,23 +8,35 @@
     - Error handling:
 
 */
-/* 
+/* Request:
 Traditional API
 Rest Api
 GraphQL API
 */
 
-/*
-
+/* Fronted development:
 Traditional FD => SSR => EJS
 Modern FD => SPA
  */
 
-/*
+
+/* Cookies:
 request join
 self destroy
 
 */
+
+
+/* Validation:
+Fronted validation
+Backend validation
+Database validation 
+
+
+*/
+
+
+
 
 // // MIT TASK G
 
@@ -113,20 +125,34 @@ self destroy
 
 
 
-// MIT TASK - K
-function countVowels(str: string): number {
-  const vowels = "aeiouAEIOU";
-  let count = 0;
+// // MIT TASK - K
+// function countVowels(str: string): number {
+//   const vowels = "aeiouAEIOU";
+//   let count = 0;
 
-  for (const char of str) {
-    if (vowels.includes(char)) {
-      count++;
-    }
-  }
+//   for (const char of str) {
+//     if (vowels.includes(char)) {
+//       count++;
+//     }
+//   }
 
-  return count;
+//   return count;
+// }
+
+// // Test
+// console.log(countVowels("string")); // Output: 1
+// console.log(countVowels("Hello World")); // Output: 3
+
+
+// MIT TASK-L
+
+function reverseSentence(str: string): string {
+ 
+  return str
+    .split(" ")
+    .map(word => word.split("").reverse().join("")) 
+    .join(" ");
 }
 
 // Test
-console.log(countVowels("string")); // Output: 1
-console.log(countVowels("Hello World")); // Output: 3
+console.log(reverseSentence("we like coding!")); // Output: "ew ekil gnidoc!"
