@@ -158,3 +158,20 @@ Database validation
 // console.log(reverseSentence("we like coding!")); // Output: "ew ekil gnidoc!"
 
 
+// MIT TASK
+
+type NumberSquare = {
+  number: number;
+  square: number;
+};
+
+function getSquareNumbers(arr: number[]): NumberSquare[] {
+  return arr.map((num) => ({
+    number: num,
+    square: num * num,
+  }));
+}
+
+// Misol:
+console.log(getSquareNumbers([1, 2, 3]));
+
