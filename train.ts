@@ -144,15 +144,17 @@ Database validation
 // console.log(countVowels("Hello World")); // Output: 3
 
 
-// MIT TASK-L
+// // MIT TASK-L
 
-function reverseSentence(str: string): string {
+// function reverseSentence(str: string): string {
  
-  return str
-    .split(" ")
-    .map(word => word.split("").reverse().join("")) 
-    .join(" ");
-}
+//   return str
+//     .split(" ")
+//     .map(word => word.split("").reverse().join("")) 
+//     .join(" ");
+// }
 
-// Test
-console.log(reverseSentence("we like coding!")); // Output: "ew ekil gnidoc!"
+// // Test
+// console.log(reverseSentence("we like coding!")); // Output: "ew ekil gnidoc!"
+
+
