@@ -158,20 +158,32 @@ Database validation
 // console.log(reverseSentence("we like coding!")); // Output: "ew ekil gnidoc!"
 
 
-// MIT TASK
+// // MIT TASK
 
-type NumberSquare = {
-  number: number;
-  square: number;
-};
+// type NumberSquare = {
+//   number: number;
+//   square: number;
+// };
 
-function getSquareNumbers(arr: number[]): NumberSquare[] {
-  return arr.map((num) => ({
-    number: num,
-    square: num * num,
-  }));
+// function getSquareNumbers(arr: number[]): NumberSquare[] {
+//   return arr.map((num) => ({
+//     number: num,
+//     square: num * num,
+//   }));
+// }
+
+// // Misol:
+// console.log(getSquareNumbers([1, 2, 3]));
+
+// N-TASK: 
+
+
+function palindromeCheck(word: string): boolean {
+  const reversed = word.split("").reverse().join("");
+  return word === reversed;
 }
 
-// Misol:
-console.log(getSquareNumbers([1, 2, 3]));
+console.log(palindromeCheck("dad")); // true
+console.log(palindromeCheck("son")); // false
+console.log(palindromeCheck("level")); // false
 
