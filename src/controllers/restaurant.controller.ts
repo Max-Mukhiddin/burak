@@ -34,6 +34,7 @@ restaurantController.getSignup = (req: Request, res: Response) => {
 restaurantController.getLogin = (req: Request, res: Response) => {
   try {
     console.log("getLogin");
+
     res.render("login");
   } catch (err) {
     console.log("Error, getLogin:", err);
@@ -45,10 +46,11 @@ restaurantController.processSignup = async (req: AdminRequest, res: Response) =>
   try {
     console.log("processSignup");
     const file = req.file;
+    
     if(!file) throw new Errors(HttpCode.BAD_REQUEST, Message.SOMETHING_WENT_WRONG);
 
     const newMember: MemberInput = req.body;
-    newMember.memberImage = file?.path;
+    newMember.memberImage = file?.path.replace(/\\/g, "/");
     newMember.memberType = MemberType.RESTAURANT;
     const result = await memberService.processSignup(newMember);
 
@@ -61,7 +63,7 @@ restaurantController.processSignup = async (req: AdminRequest, res: Response) =>
   } catch (err) {
     console.log("Error, processSignup:", err);
   const message = err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG
- res.send(`<script> alert("${message}"); window.location.replace('admin/signup')</script>`);
+ res.send(`<script> alert("${message}"); window.location.replace('/admin/signup')</script>`);
   }
 };
 
@@ -69,6 +71,7 @@ restaurantController.processSignup = async (req: AdminRequest, res: Response) =>
 restaurantController.processLogin = async (req: AdminRequest, res: Response) => {
   try {
     console.log("processLogin");
+
     const input: LoginInput = req.body;
     const result = await memberService.processLogin(input);
 
@@ -81,7 +84,7 @@ restaurantController.processLogin = async (req: AdminRequest, res: Response) => 
   } catch (err) {
     console.log("Error, processLogin:", err);
  const message = err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG
- res.send(`<script> alert("${message}"); window.location.replace('admin/login')</script>`);
+ res.send(`<script> alert("${message}"); window.location.replace('/admin/login')</script>`);
   }
 };
 

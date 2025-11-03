@@ -175,15 +175,31 @@ Database validation
 // // Misol:
 // console.log(getSquareNumbers([1, 2, 3]));
 
-// N-TASK: 
+// // N-TASK: 
 
 
-function palindromeCheck(word: string): boolean {
-  const reversed = word.split("").reverse().join("");
-  return word === reversed;
+// function palindromeCheck(word: string): boolean {
+//   const reversed = word.split("").reverse().join("");
+//   return word === reversed;
+// }
+
+// console.log(palindromeCheck("dad")); // true
+// console.log(palindromeCheck("son")); // false
+// console.log(palindromeCheck("level")); // false
+
+// TASK-O
+
+function calculateSumOfNumbers(arr: any[]): number {
+  let sum = 0;
+
+  for (const item of arr) {
+    if (typeof item === "number" && !isNaN(item)) {
+      sum += item;
+    }
+  }
+
+  return sum;
 }
 
-console.log(palindromeCheck("dad")); // true
-console.log(palindromeCheck("son")); // false
-console.log(palindromeCheck("level")); // false
-
+// test
+console.log(calculateSumOfNumbers([10, "10", { son: 10 }, true, 35])); // Output: 45
