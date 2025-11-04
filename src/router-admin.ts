@@ -24,11 +24,13 @@ routerAdmin.get("/logout", restaurantController.logout);
 /** Product */
 
 routerAdmin.get("/product/all", restaurantController.verifyRestaurant, productController.getAllProducts);
+
 routerAdmin.post("/product/create", 
   restaurantController.verifyRestaurant,
   makeUploader("products").array("productImages", 5),
   productController.createNewProduct,
 );
+
 routerAdmin.post("/product/:id", restaurantController.verifyRestaurant, productController.updateChosenProduct);
 /** User */
 
