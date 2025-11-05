@@ -189,17 +189,26 @@ Database validation
 
 // TASK-O
 
-function calculateSumOfNumbers(arr: any[]): number {
-  let sum = 0;
+// function calculateSumOfNumbers(arr: any[]): number {
+//   let sum = 0;
 
-  for (const item of arr) {
-    if (typeof item === "number" && !isNaN(item)) {
-      sum += item;
-    }
-  }
+//   for (const item of arr) {
+//     if (typeof item === "number" && !isNaN(item)) {
+//       sum += item;
+//     }
+//   }
 
-  return sum;
+//   return sum;
+// }
+
+// // test
+// console.log(calculateSumOfNumbers([10, "10", { son: 10 }, true, 35])); // Output: 45
+
+// TASK-P
+
+function objectToArray(obj: Record<string, any>): [string, any][] {
+  return Object.entries(obj);
 }
 
-// test
-console.log(calculateSumOfNumbers([10, "10", { son: 10 }, true, 35])); // Output: 45
+// Test
+console.log(objectToArray({ a: 10, b: 20 })); 
