@@ -1,8 +1,7 @@
-import {ObjectId} from "mongoose";
+import { ObjectId } from "mongoose";
 import { MemberStatus, MemberType } from "../enums/member.enum";
-import {Request} from "express"
+import { Request } from "express";
 import { Session } from "express-session";
-
 
 export interface Member {
   _id: ObjectId;
@@ -12,13 +11,12 @@ export interface Member {
   memberPhone: string;
   memberPassword?: string;
   memberAddress?: string;
-  memberdesc?: string;
+  memberDesc?: string;
   memberImage?: string;
   memberPoitns: number;
   createdAt: Date;
   updatedAt: Date;
 }
-
 
 export interface MemberInput {
   memberType?: MemberType;
@@ -27,7 +25,7 @@ export interface MemberInput {
   memberPhone: string;
   memberPassword: string;
   memberAddress?: string;
-  memberdesc?: string;
+  memberDesc?: string;
   memberImage?: string;
   memberPoitns?: number;
 }
@@ -44,13 +42,13 @@ export interface MemberUpdateInput {
   memberPhone?: string;
   memberPassword?: string;
   memberAddress?: string;
-  memberdesc?: string;
+  memberDesc?: string;
   memberImage?: string;
 }
 
 export interface AdminRequest extends Request {
-  member: Member,
-  session: Session & {member: Member};
+  member: Member;
+  session: Session & { member: Member };
   file: Express.Multer.File;
   files: Express.Multer.File[];
 }

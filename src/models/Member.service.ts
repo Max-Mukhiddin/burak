@@ -18,20 +18,17 @@ class MemberService {
     const salt = await bcrypt.genSalt();
     input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
 
-
     try {
       const result = await this.memberModel.create(input);
       result.memberPassword = "";
-      return result.toJSON();
+      return result.toJSON() as Member;
     } catch (err) {
       console.log('Error, model:signup', err)
       throw new Errors(HttpCode.BAD_REQUEST, Message.USED_NICK_PHONE);
     }
   }
 
-
   public async login(input: LoginInput): Promise<Member> {
-    // TODO: Consider member status later
     const member = await this.memberModel
       .findOne(
         { memberNick: input.memberNick, memberStatus: {$ne: MemberStatus.DELETE} },
@@ -39,9 +36,10 @@ class MemberService {
       )
       .exec();
     if (!member) throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
-else if(member.memberStatus === MemberStatus.BLOCK) {
-  throw new Errors(HttpCode.FORBIDDEN, Message.BLOCKED_USER);
-}
+    else if(member.memberStatus === MemberStatus.BLOCK) {
+      throw new Errors(HttpCode.FORBIDDEN, Message.BLOCKED_USER);
+    }
+    
     const isMatch = await bcrypt.compare(
       input.memberPassword,
       member.memberPassword
@@ -50,7 +48,10 @@ else if(member.memberStatus === MemberStatus.BLOCK) {
     if (!isMatch) {
       throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
     }
-    return await this.memberModel.findById(member._id).lean().exec();
+    
+    const result = await this.memberModel.findById(member._id).lean().exec();
+    if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
+    return result as any as Member;
   }
 
   /** SSR */
@@ -60,15 +61,13 @@ else if(member.memberStatus === MemberStatus.BLOCK) {
       .exec();
     if (exist) throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
 
-
     const salt = await bcrypt.genSalt();
     input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
-
 
     try {
       const result = await this.memberModel.create(input);
       result.memberPassword = "";
-      return result;
+      return result as any as Member;
     } catch (err) {
       throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
     }
@@ -91,23 +90,27 @@ else if(member.memberStatus === MemberStatus.BLOCK) {
     if (!isMatch) {
       throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
     }
-    return await this.memberModel.findById(member._id).exec();
+    
+    const result = await this.memberModel.findById(member._id).exec();
+    if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
+    return result as any as Member;
   }
 
- public async getUsers(): Promise<Member[]> {
-const result = await this.memberModel.find({memberType: MemberType.USER}).exec();
-if(!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
-return result;
- }
- public async updateChosenUser(input: MemberUpdateInput): Promise<Member> {
-  input._id = shapeIntoMongooseIdObjectId(input._id);
-const result = await this.memberModel
-.findByIdAndUpdate({ _id: input._id }, input, {new: true})
-.exec();
+  public async getUsers(): Promise<Member[]> {
+    const result = await this.memberModel.find({memberType: MemberType.USER}).exec();
+    if(!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+    return result as any as Member[];
+  }
 
-if(!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
-return result;
- }
+  public async updateChosenUser(input: MemberUpdateInput): Promise<Member> {
+    input._id = shapeIntoMongooseIdObjectId(input._id);
+    const result = await this.memberModel
+      .findByIdAndUpdate({ _id: input._id }, input, {new: true})
+      .exec();
 
+    if(!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
+    return result as any as Member;
+  }
 }
+
 export default MemberService;
