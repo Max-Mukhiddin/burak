@@ -19,13 +19,11 @@ Traditional FD => SSR => EJS
 Modern FD => SPA
  */
 
-
 /* Cookies:
 request join
 self destroy
 
 */
-
 
 /* Validation:
 Fronted validation
@@ -34,9 +32,6 @@ Database validation
 
 
 */
-
-
-
 
 // // MIT TASK G
 
@@ -108,7 +103,7 @@ Database validation
 // // MIT task J
 
 // function findLongestWord(str: string): string {
-//   const words = str.split(" "); 
+//   const words = str.split(" ");
 //   let longestWord = "";
 
 //   for (const word of words) {
@@ -122,8 +117,6 @@ Database validation
 
 // // Test
 // console.log(findLongestWord("I come from Uzbekistan")); //  "Uzbekistan"
-
-
 
 // // MIT TASK - K
 // function countVowels(str: string): number {
@@ -143,20 +136,18 @@ Database validation
 // console.log(countVowels("string")); // Output: 1
 // console.log(countVowels("Hello World")); // Output: 3
 
-
 // // MIT TASK-L
 
 // function reverseSentence(str: string): string {
- 
+
 //   return str
 //     .split(" ")
-//     .map(word => word.split("").reverse().join("")) 
+//     .map(word => word.split("").reverse().join(""))
 //     .join(" ");
 // }
 
 // // Test
 // console.log(reverseSentence("we like coding!")); // Output: "ew ekil gnidoc!"
-
 
 // // MIT TASK
 
@@ -175,8 +166,7 @@ Database validation
 // // Misol:
 // console.log(getSquareNumbers([1, 2, 3]));
 
-// // N-TASK: 
-
+// // N-TASK:
 
 // function palindromeCheck(word: string): boolean {
 //   const reversed = word.split("").reverse().join("");
@@ -204,11 +194,95 @@ Database validation
 // // test
 // console.log(calculateSumOfNumbers([10, "10", { son: 10 }, true, 35])); // Output: 45
 
-// TASK-P
+// // TASK-P
 
-function objectToArray(obj: Record<string, any>): [string, any][] {
-  return Object.entries(obj);
-}
+// function objectToArray(obj: Record<string, any>): [string, any][] {
+//   return Object.entries(obj);
+// }
 
-// Test
-console.log(objectToArray({ a: 10, b: 20 })); 
+// // Test
+// console.log(objectToArray({ a: 10, b: 20 }));
+
+// MIT TASK Q
+
+// function hasProperty(obj: Record<string, any>, key: string): boolean {
+//   return obj.hasOwnProperty(key);
+// }
+
+// console.log(hasProperty({ name: "BMW", model: "M3" }, "model")); // 👉 true
+// console.log(hasProperty({ name: "BMW", model: "M3" }, "year")); // 👉 false
+
+
+// MIT TASK-R
+
+// function calculate(str: string): number {
+//   return str
+//     .split("+")      
+//     .map(Number)     
+//     .reduce((sum, num) => sum + num, 0); 
+// }
+
+
+// console.log(calculate("1+3"));      // 4
+// console.log(calculate("1+2+3+4"));  // 10
+// console.log(calculate("10+20+30")); // 60
+
+
+
+
+// // MIT task S
+
+// function missingNumber(nums: number[]): number {
+//     const n: number = nums.length;
+//     const total: number = (n * (n + 1)) / 2;
+//     const sum: number = nums.reduce((acc, curr) => acc + curr, 0);
+//     return total - sum;
+// }
+
+// // Test
+// console.log(missingNumber([3, 0, 1])); // 2
+// console.log(missingNumber([0, 1]));    // 2
+// console.log(missingNumber([9,6,4,2,3,5,7,0,1])); // 8
+
+
+
+// // // MIT task T
+
+// function mergeSortedArrays(arr1: number[], arr2: number[]): number[] {
+//   return [...arr1, ...arr2].sort((a, b) => a - b);
+// }
+
+// console.log(mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]));
+// // ➜ [0, 3, 4, 4, 6, 30, 31]
+
+
+
+// MIT task U
+
+// const sumOdds = (n: number): number => {
+//   return Math.floor((n + 1) / 2);
+// };
+
+// console.log(sumOdds(9));  // 4
+// console.log(sumOdds(11)); // 5
+
+
+
+
+// MIT TASK-- V
+
+
+
+// function countChars(str: string): Record<string, number> {
+//   const result: Record<string, number> = {};
+
+//   for (const char of str) {
+//     result[char] = (result[char] || 0) + 1;
+//   }
+
+//   return result;
+// }
+
+// console.log(countChars("hello")); 
+// // { h: 1, e: 1, l: 2, o: 1 }
+
