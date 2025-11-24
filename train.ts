@@ -286,3 +286,15 @@ Database validation
 // console.log(countChars("hello")); 
 // // { h: 1, e: 1, l: 2, o: 1 }
 
+// MIT TASK W
+
+
+function chunkArray<T>(arr: T[], size: number): T[][] {
+  const result: T[][] = [];
+
+  for (let i = 0; i < arr.length; i += size) {
+    result.push(arr.slice(i, i + size));
+  }
+
+  return result;
+}

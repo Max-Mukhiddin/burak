@@ -57,10 +57,20 @@ class MemberService {
       throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
     }
 
-   return await this.memberModel.findById(member._id).lean().exec();
+    return await this.memberModel.findById(member._id).lean().exec();
+  }
+
+  public async getMemberDetail(member: Member): Promise<Member> {
+    const memberId = shapeIntoMongooseIdObjectId(member._id);
+    const result = await this.memberModel
+      .findOne({ _id: memberId, memberStatus: MemberStatus.ACTIVE })
+      .exec();
+    if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+    return result;
   }
 
   /** SSR */
+
   public async processSignup(input: MemberInput): Promise<Member> {
     const exist = await this.memberModel
       .findOne({ memberType: MemberType.RESTAURANT })
