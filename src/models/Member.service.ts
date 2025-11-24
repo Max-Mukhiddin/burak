@@ -57,8 +57,7 @@ class MemberService {
       throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
     }
 
-    const result = await this.memberModel.findById(member._id).lean().exec();
-    return result;
+   return await this.memberModel.findById(member._id).lean().exec();
   }
 
   /** SSR */
