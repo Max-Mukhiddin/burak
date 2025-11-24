@@ -58,7 +58,6 @@ class MemberService {
     }
 
     const result = await this.memberModel.findById(member._id).lean().exec();
-    if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
     return result;
   }
 
@@ -101,7 +100,7 @@ class MemberService {
 
     const result = await this.memberModel.findById(member._id).exec();
     if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
-    return result as any as Member;
+    return result;
   }
 
   public async getUsers(): Promise<Member[]> {
@@ -109,7 +108,7 @@ class MemberService {
       .find({ memberType: MemberType.USER })
       .exec();
     if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
-    return result as any as Member[];
+    return result;
   }
 
   public async updateChosenUser(input: MemberUpdateInput): Promise<Member> {
@@ -119,7 +118,7 @@ class MemberService {
       .exec();
 
     if (!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
-    return result as any as Member;
+    return result;
   }
 }
 
