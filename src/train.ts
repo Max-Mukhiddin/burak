@@ -286,15 +286,52 @@ Database validation
 // console.log(countChars("hello")); 
 // // { h: 1, e: 1, l: 2, o: 1 }
 
-// MIT TASK W
+// // MIT TASK W
 
 
-function chunkArray<T>(arr: T[], size: number): T[][] {
-  const result: T[][] = [];
+// function chunkArray<T>(arr: T[], size: number): T[][] {
+//   const result: T[][] = [];
 
-  for (let i = 0; i < arr.length; i += size) {
-    result.push(arr.slice(i, i + size));
+//   for (let i = 0; i < arr.length; i += size) {
+//     result.push(arr.slice(i, i + size));
+//   }
+
+//   return result;
+// }
+
+
+
+// // MIT TASK X
+
+
+export function countOccurrences(obj: unknown, key: string): number {
+  let count = 0;
+
+  if (obj === null || obj === undefined) return 0;
+
+
+  if (Array.isArray(obj)) {
+    for (const item of obj) {
+      count += countOccurrences(item, key);
+    }
+    return count;
   }
 
-  return result;
+  if (typeof obj === "object") {
+    for (const k of Object.keys(obj as Record<string, unknown>)) {
+      if (k === key) count += 1;
+      count += countOccurrences((obj as Record<string, unknown>)[k], key);
+    }
+  }
+
+  return count;
 }
+
+const data = {
+  model: "Bugatti",
+  steer: { model: "HANKOOK", size: 30 },
+  parts: [{ model: "X" }, { name: "y" }]
+};
+
+console.log(countOccurrences(data, "model")); // 3
+// (Bugatti, HANKOOK, "X")
