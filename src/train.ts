@@ -301,37 +301,54 @@ Database validation
 
 
 
-// // MIT TASK X
+// // // MIT TASK X
 
 
-export function countOccurrences(obj: unknown, key: string): number {
-  let count = 0;
+// export function countOccurrences(obj: unknown, key: string): number {
+//   let count = 0;
 
-  if (obj === null || obj === undefined) return 0;
+//   if (obj === null || obj === undefined) return 0;
 
 
-  if (Array.isArray(obj)) {
-    for (const item of obj) {
-      count += countOccurrences(item, key);
+//   if (Array.isArray(obj)) {
+//     for (const item of obj) {
+//       count += countOccurrences(item, key);
+//     }
+//     return count;
+//   }
+
+//   if (typeof obj === "object") {
+//     for (const k of Object.keys(obj as Record<string, unknown>)) {
+//       if (k === key) count += 1;
+//       count += countOccurrences((obj as Record<string, unknown>)[k], key);
+//     }
+//   }
+
+//   return count;
+// }
+
+// const data = {
+//   model: "Bugatti",
+//   steer: { model: "HANKOOK", size: 30 },
+//   parts: [{ model: "X" }, { name: "y" }]
+// };
+
+// console.log(countOccurrences(data, "model")); // 3
+// // (Bugatti, HANKOOK, "X")
+
+
+
+// // // MIT TASK Y
+
+export function findIntersection(arr1: number[], arr2: number[]): number[] {
+  const set2 = new Set(arr2);
+  const result: number[] = [];
+
+  for (const num of arr1) {
+    if (set2.has(num)) {
+      result.push(num);
     }
-    return count;
   }
 
-  if (typeof obj === "object") {
-    for (const k of Object.keys(obj as Record<string, unknown>)) {
-      if (k === key) count += 1;
-      count += countOccurrences((obj as Record<string, unknown>)[k], key);
-    }
-  }
-
-  return count;
+  return result;
 }
-
-const data = {
-  model: "Bugatti",
-  steer: { model: "HANKOOK", size: 30 },
-  parts: [{ model: "X" }, { name: "y" }]
-};
-
-console.log(countOccurrences(data, "model")); // 3
-// (Bugatti, HANKOOK, "X")
