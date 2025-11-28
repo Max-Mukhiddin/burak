@@ -24,7 +24,6 @@ class MemberService {
       .findOne({ memberType: MemberType.RESTAURANT })
       .lean()
       .exec();
-    result.target = "TEST";
     if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
     return result;
   }

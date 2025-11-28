@@ -13,7 +13,7 @@ class AuthService {
       const duration = `${AUTH_TIMER}h`;
       jwt.sign(
         payload,
-        process.env.SECRET_TOKEN as string,
+        this.secretToken,
         {
           expiresIn: duration,
         },
