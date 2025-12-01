@@ -2,18 +2,26 @@ import { shapeIntoMongooseIdObjectId } from "../libs/config";
 import { OrderStatus } from "../libs/enums/order.enum";
 import Errors, { HttpCode, Message } from "../libs/Errors";
 import { Member } from "../libs/types/member";
-import { Order, OrderInquiry, OrderItemInput } from "../libs/types/order";
+import {
+  Order,
+  OrderInquiry,
+  OrderItemInput,
+  OrderUpdateInput,
+} from "../libs/types/order";
 import orderModel from "../schema/order.model";
 import orderItemModel from "../schema/orderItem.model.";
 import { ObjectId } from "mongoose";
+import MemberService from "./Member.service";
 
 class OrderService {
   private readonly orderModel;
   private readonly orderItemModel;
+  private readonly memberService;
 
   constructor() {
     this.orderModel = orderModel;
     this.orderItemModel = orderItemModel;
+    this.memberService = new MemberService();
   }
 
   public async createOrder(
@@ -81,16 +89,43 @@ class OrderService {
           },
         },
         {
-            $lookup: {
-                from: "products",
-                localField: "orderItems.productId",
-                foreignField: "_id",
-                as: "productData"
-            }
-        }
+          $lookup: {
+            from: "products",
+            localField: "orderItems.productId",
+            foreignField: "_id",
+            as: "productData",
+          },
+        },
       ])
       .exec();
     if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+    return result;
+  }
+
+  public async updateOrder(
+    member: Member,
+    input: OrderUpdateInput
+  ): Promise<Order> {
+    const memberId = shapeIntoMongooseIdObjectId(member._id),
+      orderId = shapeIntoMongooseIdObjectId(input.orderId),
+      orderStatus = input.orderStatus;
+
+    const result = await this.orderModel
+      .findOneAndUpdate(
+        {
+          memberId: memberId,
+          _id: orderId,
+        },
+        { orderStatus: orderStatus },
+        { new: true }
+      )
+      .exec();
+      
+    if (!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
+
+    if (orderStatus === OrderStatus.PROCESS) {
+      await this.memberService.addUserPoint(member, 1);
+    }
     return result;
   }
 }

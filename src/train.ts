@@ -340,15 +340,28 @@ Database validation
 
 // // // MIT TASK Y
 
-export function findIntersection(arr1: number[], arr2: number[]): number[] {
-  const set2 = new Set(arr2);
-  const result: number[] = [];
+// export function findIntersection(arr1: number[], arr2: number[]): number[] {
+//   const set2 = new Set(arr2);
+//   const result: number[] = [];
 
-  for (const num of arr1) {
-    if (set2.has(num)) {
-      result.push(num);
-    }
-  }
+//   for (const num of arr1) {
+//     if (set2.has(num)) {
+//       result.push(num);
+//     }
+//   }
 
-  return result;
+//   return result;
+// }
+
+
+// // // MIT TASK Z
+
+function sumEvens(arr: number[]): number {
+  return arr
+    .filter((num: number) => num % 2 === 0)
+    .reduce((sum: number, num: number) => sum + num, 0);
 }
+
+console.log(sumEvens([1, 2, 3]));     // 2
+console.log(sumEvens([2, 4, 6]));     // 12
+console.log(sumEvens([1, 3, 5]));     // 0
