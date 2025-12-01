@@ -1,7 +1,8 @@
 import { shapeIntoMongooseIdObjectId } from "../libs/config";
+import { OrderStatus } from "../libs/enums/order.enum";
 import Errors, { HttpCode, Message } from "../libs/Errors";
 import { Member } from "../libs/types/member";
-import { Order, OrderItemInput } from "../libs/types/order";
+import { Order, OrderInquiry, OrderItemInput } from "../libs/types/order";
 import orderModel from "../schema/order.model";
 import orderItemModel from "../schema/orderItem.model.";
 import { ObjectId } from "mongoose";
@@ -18,7 +19,7 @@ class OrderService {
   public async createOrder(
     member: Member,
     input: OrderItemInput[]
-  ): Promise<void> {
+  ): Promise<Order> {
     const memberId = shapeIntoMongooseIdObjectId(member._id);
     const amount = input.reduce((accumulator: number, item: OrderItemInput) => {
       return accumulator + item.itemPrice * item.itemQuantity;
@@ -35,7 +36,7 @@ class OrderService {
       const orderId = newOrder._id;
       await this.recordOrderItem(orderId, input);
 
-      //    TODO:  create order items
+      return newOrder;
     } catch (err) {
       console.log("Error, model:createOrder:", err);
       throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
@@ -46,17 +47,51 @@ class OrderService {
     orderId: ObjectId,
     input: OrderItemInput[]
   ): Promise<void> {
-   const promisedList = input.map( async (item: OrderItemInput) => {
-        item.orderId = orderId;
-        item.productId = shapeIntoMongooseIdObjectId(item.productId);
-        await this.orderItemModel.create(item);
-        return "INSERTED";
+    const promisedList = input.map(async (item: OrderItemInput) => {
+      item.orderId = orderId;
+      item.productId = shapeIntoMongooseIdObjectId(item.productId);
+      await this.orderItemModel.create(item);
+      return "INSERTED";
     });
 
     console.log("promisedList:", promisedList);
-    const orderItemState  = await Promise.all(promisedList);
+    const orderItemState = await Promise.all(promisedList);
     console.log("orderItemState", orderItemState);
+  }
 
+  public async getMyOrders(
+    member: Member,
+    inquiry: OrderInquiry
+  ): Promise<Order[]> {
+    const memberId = shapeIntoMongooseIdObjectId(member._id);
+    const matches = { memberId: memberId, orderStatus: inquiry.orderStatus };
+
+    const result = await this.orderModel
+      .aggregate([
+        { $match: matches },
+        { $sort: { updatedAt: -1 } },
+        { $skip: (inquiry.page - 1) * inquiry.limit },
+        { $limit: inquiry.limit },
+        {
+          $lookup: {
+            from: "orderItems",
+            localField: "_id",
+            foreignField: "orderId",
+            as: "orderItems",
+          },
+        },
+        {
+            $lookup: {
+                from: "products",
+                localField: "orderItems.productId",
+                foreignField: "_id",
+                as: "productData"
+            }
+        }
+      ])
+      .exec();
+    if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+    return result;
   }
 }
 
