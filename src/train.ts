@@ -367,10 +367,22 @@ Database validation
 // console.log(sumEvens([1, 3, 5]));     // 0
 
 
-function sortByAge(arr: { age: number }[]): { age: number }[] {
-  return arr.sort((a, b) => a.age - b.age);
+// function sortByAge(arr: { age: number }[]): { age: number }[] {
+//   return arr.sort((a, b) => a.age - b.age);
+// }
+
+// // TEST
+// console.log(sortByAge([{ age: 23 }, { age: 21 }, { age: 13 }]));
+// // natija: [ { age: 13 }, { age: 21 }, { age: 23 } ]
+
+
+// MIT TASK ZC
+
+function celsiusToFahrenheit(celsius: number): number {
+  return (celsius * 9) / 5 + 32;
 }
 
-// TEST
-console.log(sortByAge([{ age: 23 }, { age: 21 }, { age: 13 }]));
-// natija: [ { age: 13 }, { age: 21 }, { age: 23 } ]
+// Test
+console.log(celsiusToFahrenheit(0));   // 32
+console.log(celsiusToFahrenheit(25));  // 77
+console.log(celsiusToFahrenheit(100)); // 212
