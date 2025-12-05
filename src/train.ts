@@ -354,14 +354,23 @@ Database validation
 // }
 
 
-// // // MIT TASK Z
+// // // // MIT TASK Z
 
-function sumEvens(arr: number[]): number {
-  return arr
-    .filter((num: number) => num % 2 === 0)
-    .reduce((sum: number, num: number) => sum + num, 0);
+// function sumEvens(arr: number[]): number {
+//   return arr
+//     .filter((num: number) => num % 2 === 0)
+//     .reduce((sum: number, num: number) => sum + num, 0);
+// }
+
+// console.log(sumEvens([1, 2, 3]));     // 2
+// console.log(sumEvens([2, 4, 6]));     // 12
+// console.log(sumEvens([1, 3, 5]));     // 0
+
+
+function sortByAge(arr: { age: number }[]): { age: number }[] {
+  return arr.sort((a, b) => a.age - b.age);
 }
 
-console.log(sumEvens([1, 2, 3]));     // 2
-console.log(sumEvens([2, 4, 6]));     // 12
-console.log(sumEvens([1, 3, 5]));     // 0
+// TEST
+console.log(sortByAge([{ age: 23 }, { age: 21 }, { age: 13 }]));
+// natija: [ { age: 13 }, { age: 21 }, { age: 23 } ]

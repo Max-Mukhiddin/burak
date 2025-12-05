@@ -8,8 +8,8 @@ import {
   OrderItemInput,
   OrderUpdateInput,
 } from "../libs/types/order";
-import orderModel from "../schema/order.model";
-import orderItemModel from "../schema/orderItem.model.";
+import orderModel from "../schema/Order.model";
+import orderItemModel from "../schema/OrderItem.model.";
 import { ObjectId } from "mongoose";
 import MemberService from "./Member.service";
 
