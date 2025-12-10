@@ -120,7 +120,7 @@ class OrderService {
         { new: true }
       )
       .exec();
-      
+
     if (!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
 
     if (orderStatus === OrderStatus.PROCESS) {

@@ -1,3 +1,4 @@
+import cors from "cors";
 import express from "express";
 import path from "path";
 import router from "./router";
@@ -13,38 +14,37 @@ import { T } from "./libs/types/common";
 const MongoDBStore = ConnectMongoDB(session);
 const store = new MongoDBStore({
   uri: String(process.env.MONGO_URL),
-  collection: "sessions"
+  collection: "sessions",
 });
 
 /** 1-ENTERANCE **/
 const app = express();
-
 app.use(express.static(path.join(__dirname, "public")));
-app.use("/uploads", express.static("/uploads"));
+app.use("/uploads", express.static(path.join(__dirname, "..", "uploads")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors({ credentials: true, origin: true }));
 app.use(cookieParser());
 app.use(morgan(MORGAN_FORMAT));
 
 /** 2-SESSIONS **/
 app.use(
   session({
-     secret: 'This is a secret',
-  cookie: {
-    maxAge: 1000 * 3600 * 6 // 6h
-  },
-  store: store,
-  resave: true,
-  saveUninitialized: true
+    secret: "This is a secret",
+    cookie: {
+      maxAge: 1000 * 3600 * 6, // 6h
+    },
+    store: store,
+    resave: true,
+    saveUninitialized: true,
   })
 );
 
-app.use(function(req, res, next) {
-const sessionInstance = req.session as T;
-res.locals.member = sessionInstance.member;
-next();
+app.use(function (req, res, next) {
+  const sessionInstance = req.session as T;
+  res.locals.member = sessionInstance.member;
+  next();
 });
-
 
 /** 3-VIEWS **/
 app.set("views", path.join(__dirname, "views"));

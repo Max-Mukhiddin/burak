@@ -12,35 +12,34 @@ $(function () {
     }
   });
 
-$("#process-btn").on("click", () => {
+  $("#process-btn").on("click", () => {
     $(".dish-container").slideToggle(500);
     $("#process-btn").css("display", "none");
-});
+  });
 
-$("#cancel-btn").on("click", () => {
+  $("#cancel-btn").on("click", () => {
     $(".dish-container").slideToggle(100);
     $("#process-btn").css("display", "flex");
-});
+  });
 
-$(".new-product-status").on("change", async function(e) {
+  $(".new-product-status").on("change", async function (e) {
     const id = e.target.id;
     const productStatus = $(`#${id}.new-product-status`).val();
 
-try {
-    const response = await axios.post(`/admin/product/${id}`, {productStatus: productStatus});
-    console.log("response:", response);
-    const result = response.data;
-    if(result.data) {
+    try {
+      const response = await axios.post(`/admin/product/${id}`, {
+        productStatus: productStatus,
+      });
+      console.log("response:", response);
+      const result = response.data;
+      if (result.data) {
         $(".new-product-status").blur();
-    } else alert("Product update failed!");
-    
-} catch(err) {
-    console.log(err);
-    alert("Product update failed!")
-}
-
-});
-
+      } else alert("Product update failed!");
+    } catch (err) {
+      console.log(err);
+      alert("Product update failed!");
+    }
+  });
 });
 
 function validateForm() {
@@ -70,10 +69,10 @@ function previewFileHandler(input, order) {
 
   const file = $(`.${imgClassName}`).get(0).files[0];
   const fileType = file["type"];
-  const validImageType = ["image/jpg", "image/jpeg", "image/png"];
+  const validImageType = ["image/jpg", "image/jpeg", "image/png", "image/webp"];
 
   if (!validImageType.includes(fileType)) {
-    alert("Please insert only jpeg, jpg and png");
+    alert("Please insert only jpeg, jpg, webp and png");
   } else {
     if (file) {
       const reader = new FileReader();
