@@ -376,13 +376,30 @@ Database validation
 // // natija: [ { age: 13 }, { age: 21 }, { age: 23 } ]
 
 
-// MIT TASK ZC
+// // MIT TASK ZC
 
-function celsiusToFahrenheit(celsius: number): number {
-  return (celsius * 9) / 5 + 32;
+// function celsiusToFahrenheit(celsius: number): number {
+//   return (celsius * 9) / 5 + 32;
+// }
+
+// // Test
+// console.log(celsiusToFahrenheit(0));   // 32
+// console.log(celsiusToFahrenheit(25));  // 77
+// console.log(celsiusToFahrenheit(100)); // 212
+
+
+// // MIT TASK Z
+
+function changeNumberInArray(findNumber: number, arr: number[], newNumber: number): number[] {
+  const index = arr.indexOf(findNumber); 
+
+  if (index !== -1) {
+    arr[index] = newNumber;  
+  }
+
+  return arr; 
 }
 
 // Test
-console.log(celsiusToFahrenheit(0));   // 32
-console.log(celsiusToFahrenheit(25));  // 77
-console.log(celsiusToFahrenheit(100)); // 212
+console.log(changeNumberInArray(1, [1, 3, 7, 2], 2)); 
+// Output: [1, 2, 7, 2]
