@@ -212,23 +212,18 @@ Database validation
 // console.log(hasProperty({ name: "BMW", model: "M3" }, "model")); // 👉 true
 // console.log(hasProperty({ name: "BMW", model: "M3" }, "year")); // 👉 false
 
-
 // MIT TASK-R
 
 // function calculate(str: string): number {
 //   return str
-//     .split("+")      
-//     .map(Number)     
-//     .reduce((sum, num) => sum + num, 0); 
+//     .split("+")
+//     .map(Number)
+//     .reduce((sum, num) => sum + num, 0);
 // }
-
 
 // console.log(calculate("1+3"));      // 4
 // console.log(calculate("1+2+3+4"));  // 10
 // console.log(calculate("10+20+30")); // 60
-
-
-
 
 // // MIT task S
 
@@ -244,8 +239,6 @@ Database validation
 // console.log(missingNumber([0, 1]));    // 2
 // console.log(missingNumber([9,6,4,2,3,5,7,0,1])); // 8
 
-
-
 // // // MIT task T
 
 // function mergeSortedArrays(arr1: number[], arr2: number[]): number[] {
@@ -254,8 +247,6 @@ Database validation
 
 // console.log(mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]));
 // // ➜ [0, 3, 4, 4, 6, 30, 31]
-
-
 
 // MIT task U
 
@@ -266,12 +257,7 @@ Database validation
 // console.log(sumOdds(9));  // 4
 // console.log(sumOdds(11)); // 5
 
-
-
-
 // MIT TASK-- V
-
-
 
 // function countChars(str: string): Record<string, number> {
 //   const result: Record<string, number> = {};
@@ -283,11 +269,10 @@ Database validation
 //   return result;
 // }
 
-// console.log(countChars("hello")); 
+// console.log(countChars("hello"));
 // // { h: 1, e: 1, l: 2, o: 1 }
 
 // // MIT TASK W
-
 
 // function chunkArray<T>(arr: T[], size: number): T[][] {
 //   const result: T[][] = [];
@@ -299,16 +284,12 @@ Database validation
 //   return result;
 // }
 
-
-
 // // // MIT TASK X
-
 
 // export function countOccurrences(obj: unknown, key: string): number {
 //   let count = 0;
 
 //   if (obj === null || obj === undefined) return 0;
-
 
 //   if (Array.isArray(obj)) {
 //     for (const item of obj) {
@@ -336,8 +317,6 @@ Database validation
 // console.log(countOccurrences(data, "model")); // 3
 // // (Bugatti, HANKOOK, "X")
 
-
-
 // // // MIT TASK Y
 
 // export function findIntersection(arr1: number[], arr2: number[]): number[] {
@@ -353,7 +332,6 @@ Database validation
 //   return result;
 // }
 
-
 // // // // MIT TASK Z
 
 // function sumEvens(arr: number[]): number {
@@ -366,7 +344,6 @@ Database validation
 // console.log(sumEvens([2, 4, 6]));     // 12
 // console.log(sumEvens([1, 3, 5]));     // 0
 
-
 // function sortByAge(arr: { age: number }[]): { age: number }[] {
 //   return arr.sort((a, b) => a.age - b.age);
 // }
@@ -374,7 +351,6 @@ Database validation
 // // TEST
 // console.log(sortByAge([{ age: 23 }, { age: 21 }, { age: 13 }]));
 // // natija: [ { age: 13 }, { age: 21 }, { age: 23 } ]
-
 
 // // MIT TASK ZC
 
@@ -387,19 +363,32 @@ Database validation
 // console.log(celsiusToFahrenheit(25));  // 77
 // console.log(celsiusToFahrenheit(100)); // 212
 
+// // // MIT TASK ZD
 
-// // MIT TASK Z
+// function changeNumberInArray(
+//   findNumber: number,
+//   arr: number[],
+//   newNumber: number
+// ): number[] {
+//   const index = arr.indexOf(findNumber);
 
-function changeNumberInArray(findNumber: number, arr: number[], newNumber: number): number[] {
-  const index = arr.indexOf(findNumber); 
+//   if (index !== -1) {
+//     arr[index] = newNumber;
+//   }
 
-  if (index !== -1) {
-    arr[index] = newNumber;  
-  }
+//   return arr;
+// }
 
-  return arr; 
+// // Test
+// console.log(changeNumberInArray(1, [1, 3, 7, 2], 2));
+// // Output: [1, 2, 7, 2]
+
+
+// // // MIT TASK ZE
+
+
+function removeDuplicate(str: string): string {
+  return [...new Set(str)].join("");
 }
 
-// Test
-console.log(changeNumberInArray(1, [1, 3, 7, 2], 2)); 
-// Output: [1, 2, 7, 2]
+console.log(removeDuplicate("stringg")); // "string"
