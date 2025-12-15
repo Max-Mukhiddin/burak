@@ -384,11 +384,27 @@ Database validation
 // // Output: [1, 2, 7, 2]
 
 
-// // // MIT TASK ZE
+// // // // MIT TASK ZE
 
 
-function removeDuplicate(str: string): string {
-  return [...new Set(str)].join("");
+// function removeDuplicate(str: string): string {
+//   return [...new Set(str)].join("");
+// }
+
+// console.log(removeDuplicate("stringg")); // "string"
+
+
+// MIT TASK ZF
+
+function capitalizeWords(text: string): string {
+  return text
+    .split(" ")
+    .map(word => {
+      if (word.length <= 2) return word;
+      return word[0].toUpperCase() + word.slice(1);
+    })
+    .join(" ");
 }
 
-console.log(removeDuplicate("stringg")); // "string"
+console.log(capitalizeWords("name should be a string"));
+// "Name Should be a String"
