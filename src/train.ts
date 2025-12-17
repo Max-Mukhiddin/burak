@@ -394,17 +394,31 @@ Database validation
 // console.log(removeDuplicate("stringg")); // "string"
 
 
-// MIT TASK ZF
+// // MIT TASK ZF
 
-function capitalizeWords(text: string): string {
-  return text
-    .split(" ")
-    .map(word => {
-      if (word.length <= 2) return word;
-      return word[0].toUpperCase() + word.slice(1);
-    })
-    .join(" ");
+// function capitalizeWords(text: string): string {
+//   return text
+//     .split(" ")
+//     .map(word => {
+//       if (word.length <= 2) return word;
+//       return word[0].toUpperCase() + word.slice(1);
+//     })
+//     .join(" ");
+// }
+
+// console.log(capitalizeWords("name should be a string"));
+// // "Name Should be a String"
+
+
+// // MIT TASK ZG
+
+function toSnakeCase(str: string): string {
+  return str
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, "_");
 }
 
-console.log(capitalizeWords("name should be a string"));
-// "Name Should be a String"
+// Example
+toSnakeCase("name should be a string"); 
+// "name_should_be_a_string"
