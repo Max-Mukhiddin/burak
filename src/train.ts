@@ -410,15 +410,36 @@ Database validation
 // // "Name Should be a String"
 
 
-// // MIT TASK ZG
+// // // MIT TASK ZG
 
-function toSnakeCase(str: string): string {
-  return str
-    .trim()
-    .toLowerCase()
-    .replace(/\s+/g, "_");
+// function toSnakeCase(str: string): string {
+//   return str
+//     .trim()
+//     .toLowerCase()
+//     .replace(/\s+/g, "_");
+// }
+
+// // Example
+// toSnakeCase("name should be a string"); 
+// // "name_should_be_a_string"
+
+
+// // // MIT TASK ZH
+
+
+function findDisappearedNumbers(arr: number[]): number[] {
+  const max = Math.max(...arr);
+  const set = new Set(arr);
+  const result: number[] = [];
+
+  for (let i = 1; i <= max; i++) {
+    if (!set.has(i)) {
+      result.push(i);
+    }
+  }
+
+  return result;
 }
 
-// Example
-toSnakeCase("name should be a string"); 
-// "name_should_be_a_string"
+findDisappearedNumbers([1, 3, 4, 7]); 
+// [2, 5, 6]
