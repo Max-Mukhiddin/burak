@@ -427,19 +427,38 @@ Database validation
 // // // MIT TASK ZH
 
 
-function findDisappearedNumbers(arr: number[]): number[] {
-  const max = Math.max(...arr);
-  const set = new Set(arr);
-  const result: number[] = [];
+// function findDisappearedNumbers(arr: number[]): number[] {
+//   const max = Math.max(...arr);
+//   const set = new Set(arr);
+//   const result: number[] = [];
 
-  for (let i = 1; i <= max; i++) {
-    if (!set.has(i)) {
-      result.push(i);
-    }
-  }
+//   for (let i = 1; i <= max; i++) {
+//     if (!set.has(i)) {
+//       result.push(i);
+//     }
+//   }
 
-  return result;
+//   return result;
+// }
+
+// findDisappearedNumbers([1, 3, 4, 7]); 
+// // [2, 5, 6]
+
+// // MIT TASK ZI
+
+
+function delayHelloWorld(message: string): Promise<string> {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(message);
+    }, 3000);
+  });
 }
 
-findDisappearedNumbers([1, 3, 4, 7]); 
-// [2, 5, 6]
+
+async function run() {
+  const result = await delayHelloWorld("Hello World!");
+  console.log(result);
+}
+
+run();
