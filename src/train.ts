@@ -444,21 +444,62 @@ Database validation
 // findDisappearedNumbers([1, 3, 4, 7]); 
 // // [2, 5, 6]
 
-// // MIT TASK ZI
+// // // MIT TASK ZI
 
 
-function delayHelloWorld(message: string): Promise<string> {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(message);
-    }, 3000);
-  });
+// function delayHelloWorld(message: string): Promise<string> {
+//   return new Promise((resolve) => {
+//     setTimeout(() => {
+//       resolve(message);
+//     }, 3000);
+//   });
+// }
+
+
+// async function run() {
+//   const result = await delayHelloWorld("Hello World!");
+//   console.log(result);
+// }
+
+// run();
+
+
+
+// // // MIT TASK ZJ
+
+
+// function reduceNestedArray(arr: any[]): number {
+//   let sum = 0;
+
+//   for (const item of arr) {
+//     if (Array.isArray(item)) {
+//       sum += reduceNestedArray(item);
+//     } else if (typeof item === "number") {
+//       sum += item;
+//     }
+//   }
+
+//   return sum;
+// }
+
+// // Test
+// console.log(reduceNestedArray([1, [1, 2, [4]]])); // 8
+// console.log(reduceNestedArray([1, 4, [5]])); // 10
+
+
+// // // MIT TASK ZK
+
+function printNumbers(): void {
+  let count = 1;
+
+  const intervalId = setInterval(() => {
+    console.log(count);
+    count++;
+
+    if (count > 5) {
+      clearInterval(intervalId);
+    }
+  }, 1000);
 }
 
-
-async function run() {
-  const result = await delayHelloWorld("Hello World!");
-  console.log(result);
-}
-
-run();
+printNumbers();
