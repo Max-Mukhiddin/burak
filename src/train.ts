@@ -487,19 +487,31 @@ Database validation
 // console.log(reduceNestedArray([1, 4, [5]])); // 10
 
 
-// // // MIT TASK ZK
+// // // // MIT TASK ZK
 
-function printNumbers(): void {
-  let count = 1;
+// function printNumbers(): void {
+//   let count = 1;
 
-  const intervalId = setInterval(() => {
-    console.log(count);
-    count++;
+//   const intervalId = setInterval(() => {
+//     console.log(count);
+//     count++;
 
-    if (count > 5) {
-      clearInterval(intervalId);
-    }
-  }, 1000);
+//     if (count > 5) {
+//       clearInterval(intervalId);
+//     }
+//   }, 1000);
+// }
+
+// printNumbers();
+
+// // // // MIT TASK ZI
+
+function stringToKebab(str: string): string {
+  return str
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, "-");
 }
 
-printNumbers();
+stringToKebab("I love Kebab"); // "i-love-kebab"
+stringToKebab("  Hello   World  "); // "hello-world"
