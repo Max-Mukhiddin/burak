@@ -504,7 +504,7 @@ Database validation
 
 // printNumbers();
 
-// // // // // MIT TASK ZI
+// // // // // MIT TASK ZL
 
 // function stringToKebab(str: string): string {
 //   return str
@@ -517,7 +517,7 @@ Database validation
 // stringToKebab("  Hello   World  "); // "hello-world"
 
 
-// // // // // MIT TASK ZK
+// // // // // MIT TASK ZM
 function squareDigits(num: number): string {
   return num
     .toString()
@@ -528,6 +528,4 @@ function squareDigits(num: number): string {
     })
     .join("");
 }
-
-// Example
-// squareDigits(9119) -> "811181"
+console.log(squareDigits(222));
