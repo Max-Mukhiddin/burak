@@ -504,14 +504,30 @@ Database validation
 
 // printNumbers();
 
-// // // // MIT TASK ZI
+// // // // // MIT TASK ZI
 
-function stringToKebab(str: string): string {
-  return str
-    .toLowerCase()
-    .trim()
-    .replace(/\s+/g, "-");
+// function stringToKebab(str: string): string {
+//   return str
+//     .toLowerCase()
+//     .trim()
+//     .replace(/\s+/g, "-");
+// }
+
+// stringToKebab("I love Kebab"); // "i-love-kebab"
+// stringToKebab("  Hello   World  "); // "hello-world"
+
+
+// // // // // MIT TASK ZK
+function squareDigits(num: number): string {
+  return num
+    .toString()
+    .split("")
+    .map((digit) => {
+      const n = Number(digit);
+      return (n * n).toString();
+    })
+    .join("");
 }
 
-stringToKebab("I love Kebab"); // "i-love-kebab"
-stringToKebab("  Hello   World  "); // "hello-world"
+// Example
+// squareDigits(9119) -> "811181"
