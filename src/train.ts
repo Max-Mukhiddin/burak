@@ -383,16 +383,13 @@ Database validation
 // console.log(changeNumberInArray(1, [1, 3, 7, 2], 2));
 // // Output: [1, 2, 7, 2]
 
-
 // // // // MIT TASK ZE
-
 
 // function removeDuplicate(str: string): string {
 //   return [...new Set(str)].join("");
 // }
 
 // console.log(removeDuplicate("stringg")); // "string"
-
 
 // // MIT TASK ZF
 
@@ -409,7 +406,6 @@ Database validation
 // console.log(capitalizeWords("name should be a string"));
 // // "Name Should be a String"
 
-
 // // // MIT TASK ZG
 
 // function toSnakeCase(str: string): string {
@@ -420,12 +416,10 @@ Database validation
 // }
 
 // // Example
-// toSnakeCase("name should be a string"); 
+// toSnakeCase("name should be a string");
 // // "name_should_be_a_string"
 
-
 // // // MIT TASK ZH
-
 
 // function findDisappearedNumbers(arr: number[]): number[] {
 //   const max = Math.max(...arr);
@@ -441,11 +435,10 @@ Database validation
 //   return result;
 // }
 
-// findDisappearedNumbers([1, 3, 4, 7]); 
+// findDisappearedNumbers([1, 3, 4, 7]);
 // // [2, 5, 6]
 
 // // // MIT TASK ZI
-
 
 // function delayHelloWorld(message: string): Promise<string> {
 //   return new Promise((resolve) => {
@@ -455,7 +448,6 @@ Database validation
 //   });
 // }
 
-
 // async function run() {
 //   const result = await delayHelloWorld("Hello World!");
 //   console.log(result);
@@ -463,10 +455,7 @@ Database validation
 
 // run();
 
-
-
 // // // MIT TASK ZJ
-
 
 // function reduceNestedArray(arr: any[]): number {
 //   let sum = 0;
@@ -485,7 +474,6 @@ Database validation
 // // Test
 // console.log(reduceNestedArray([1, [1, 2, [4]]])); // 8
 // console.log(reduceNestedArray([1, 4, [5]])); // 10
-
 
 // // // // MIT TASK ZK
 
@@ -516,16 +504,27 @@ Database validation
 // stringToKebab("I love Kebab"); // "i-love-kebab"
 // stringToKebab("  Hello   World  "); // "hello-world"
 
-
 // // // // // MIT TASK ZM
-function squareDigits(num: number): string {
-  return num
-    .toString()
-    .split("")
-    .map((digit) => {
-      const n = Number(digit);
-      return (n * n).toString();
-    })
-    .join("");
+// function squareDigits(num: number): string {
+//   return num
+//     .toString()
+//     .split("")
+//     .map((digit) => {
+//       const n = Number(digit);
+//       return (n * n).toString();
+//     })
+//     .join("");
+// }
+// console.log(squareDigits(222));
+
+// MIT TASK ZN
+
+function rotateArray(arr: number[], index: number): number[] {
+  const cutPart = arr.slice(0, index);
+  const remainingPart = arr.slice(index);
+
+  return [...remainingPart, ...cutPart];
 }
-console.log(squareDigits(222));
+
+console.log(rotateArray([1, 2, 3, 4, 5, 6], 2));
+// 👉 [3, 4, 5, 6, 1, 2]
