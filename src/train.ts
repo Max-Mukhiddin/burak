@@ -517,14 +517,46 @@ Database validation
 // }
 // console.log(squareDigits(222));
 
-// MIT TASK ZN
+// // MIT TASK ZN
 
-function rotateArray(arr: number[], index: number): number[] {
-  const cutPart = arr.slice(0, index);
-  const remainingPart = arr.slice(index);
+// function rotateArray(arr: number[], index: number): number[] {
+//   const cutPart = arr.slice(0, index);
+//   const remainingPart = arr.slice(index);
 
-  return [...remainingPart, ...cutPart];
+//   return [...remainingPart, ...cutPart];
+// }
+
+// console.log(rotateArray([1, 2, 3, 4, 5, 6], 2));
+// // 👉 [3, 4, 5, 6, 1, 2]
+
+
+
+// // MIT TASK ZO
+function areParenthesesBalanced(str: string): boolean {
+    let count = 0;
+    
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] === '(') {
+            count++;
+        } else if (str[i] === ')') {
+            count--;
+        }
+        
+       
+        if (count < 0) {
+            return false;
+        }
+    }
+    
+   
+    return count === 0;
 }
 
-console.log(rotateArray([1, 2, 3, 4, 5, 6], 2));
-// 👉 [3, 4, 5, 6, 1, 2]
+// Test cases
+console.log(areParenthesesBalanced("string()ichida(qavslar)soni()balansda")); // true
+console.log(areParenthesesBalanced("((()))")); // true
+console.log(areParenthesesBalanced("()()()"));  // true
+console.log(areParenthesesBalanced("(()"));     // false
+console.log(areParenthesesBalanced("())"));     // false
+console.log(areParenthesesBalanced(")(")); // false
+console.log(areParenthesesBalanced("hello")); // true (qavslar yo'q)
