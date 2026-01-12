@@ -531,32 +531,55 @@ Database validation
 
 
 
-// // MIT TASK ZO
-function areParenthesesBalanced(str: string): boolean {
-    let count = 0;
+// // // MIT TASK ZO
+// function areParenthesesBalanced(str: string): boolean {
+//     let count = 0;
     
-    for (let i = 0; i < str.length; i++) {
-        if (str[i] === '(') {
-            count++;
-        } else if (str[i] === ')') {
-            count--;
-        }
+//     for (let i = 0; i < str.length; i++) {
+//         if (str[i] === '(') {
+//             count++;
+//         } else if (str[i] === ')') {
+//             count--;
+//         }
         
        
-        if (count < 0) {
-            return false;
-        }
-    }
+//         if (count < 0) {
+//             return false;
+//         }
+//     }
     
    
-    return count === 0;
-}
+//     return count === 0;
+// }
 
-// Test cases
-console.log(areParenthesesBalanced("string()ichida(qavslar)soni()balansda")); // true
-console.log(areParenthesesBalanced("((()))")); // true
-console.log(areParenthesesBalanced("()()()"));  // true
-console.log(areParenthesesBalanced("(()"));     // false
-console.log(areParenthesesBalanced("())"));     // false
-console.log(areParenthesesBalanced(")(")); // false
-console.log(areParenthesesBalanced("hello")); // true (qavslar yo'q)
+// // Test cases
+// console.log(areParenthesesBalanced("string()ichida(qavslar)soni()balansda")); // true
+// console.log(areParenthesesBalanced("((()))")); // true
+// console.log(areParenthesesBalanced("()()()"));  // true
+// console.log(areParenthesesBalanced("(()"));     // false
+// console.log(areParenthesesBalanced("())"));     // false
+// console.log(areParenthesesBalanced(")(")); // false
+// console.log(areParenthesesBalanced("hello")); // true (qavslar yo'q)
+
+
+// // // MIT TASK ZP
+
+type CountResult = {
+	number: number;
+	letter: number;
+};
+
+function countNumberAndLetters(text: string): CountResult {
+	let number = 0;
+	let letter = 0;
+
+	for (const char of text) {
+		if (/[0-9]/.test(char)) {
+			number++;
+		} else if (/[a-zA-Z]/.test(char)) {
+			letter++;
+		}
+	}
+
+	return { number, letter };
+}
