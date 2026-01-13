@@ -562,24 +562,47 @@ Database validation
 // console.log(areParenthesesBalanced("hello")); // true (qavslar yo'q)
 
 
-// // // MIT TASK ZP
+// // // // MIT TASK ZP
 
-type CountResult = {
-	number: number;
-	letter: number;
-};
+// type CountResult = {
+// 	number: number;
+// 	letter: number;
+// };
 
-function countNumberAndLetters(text: string): CountResult {
-	let number = 0;
-	let letter = 0;
+// function countNumberAndLetters(text: string): CountResult {
+// 	let number = 0;
+// 	let letter = 0;
 
-	for (const char of text) {
-		if (/[0-9]/.test(char)) {
-			number++;
-		} else if (/[a-zA-Z]/.test(char)) {
-			letter++;
-		}
-	}
+// 	for (const char of text) {
+// 		if (/[0-9]/.test(char)) {
+// 			number++;
+// 		} else if (/[a-zA-Z]/.test(char)) {
+// 			letter++;
+// 		}
+// 	}
 
-	return { number, letter };
+// 	return { number, letter };
+// }
+
+// // // // MIT TASK ZQ
+function findDuplicates(arr: number[]): number[] {
+    const count: { [key: number]: number } = {};
+    const duplicates: number[] = [];
+    
+    // Count occurrences of each number
+    for (const num of arr) {
+        count[num] = (count[num] || 0) + 1;
+    }
+    
+    // Find numbers that appear exactly 2 times or more
+    for (const num in count) {
+        if (count[num] >= 2) {
+            duplicates.push(Number(num));
+        }
+    }
+    
+    return duplicates;
 }
+
+// Test
+console.log(findDuplicates([1, 2, 3, 4, 5, 4, 3, 4])); // [3, 4]
