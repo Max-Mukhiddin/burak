@@ -584,25 +584,46 @@ Database validation
 // 	return { number, letter };
 // }
 
-// // // // MIT TASK ZQ
-function findDuplicates(arr: number[]): number[] {
-    const count: { [key: number]: number } = {};
-    const duplicates: number[] = [];
+// // // // // MIT TASK ZQ
+// function findDuplicates(arr: number[]): number[] {
+//     const count: { [key: number]: number } = {};
+//     const duplicates: number[] = [];
     
-    // Count occurrences of each number
-    for (const num of arr) {
-        count[num] = (count[num] || 0) + 1;
-    }
+//     // Count occurrences of each number
+//     for (const num of arr) {
+//         count[num] = (count[num] || 0) + 1;
+//     }
     
-    // Find numbers that appear exactly 2 times or more
-    for (const num in count) {
-        if (count[num] >= 2) {
-            duplicates.push(Number(num));
-        }
-    }
+//     // Find numbers that appear exactly 2 times or more
+//     for (const num in count) {
+//         if (count[num] >= 2) {
+//             duplicates.push(Number(num));
+//         }
+//     }
     
-    return duplicates;
+//     return duplicates;
+// }
+
+// // Test
+// console.log(findDuplicates([1, 2, 3, 4, 5, 4, 3, 4])); // [3, 4]
+
+
+// // // // // MIT TASK ZR
+
+
+function areArraysEqual(arr1: number[], arr2: number[]): boolean {
+	if (arr1.length !== arr2.length) return false;
+
+	const sorted1 = [...arr1].sort((a, b) => a - b);
+	const sorted2 = [...arr2].sort((a, b) => a - b);
+
+	for (let i = 0; i < sorted1.length; i++) {
+		if (sorted1[i] !== sorted2[i]) return false;
+	}
+
+	return true;
 }
 
-// Test
-console.log(findDuplicates([1, 2, 3, 4, 5, 4, 3, 4])); // [3, 4]
+// examples
+areArraysEqual([1, 2, 3], [3, 1, 2]); // true
+areArraysEqual([1, 2, 2], [2, 1, 1]); // false
