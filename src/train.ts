@@ -611,19 +611,33 @@ Database validation
 // // // // // MIT TASK ZR
 
 
-function areArraysEqual(arr1: number[], arr2: number[]): boolean {
-	if (arr1.length !== arr2.length) return false;
+// function areArraysEqual(arr1: number[], arr2: number[]): boolean {
+// 	if (arr1.length !== arr2.length) return false;
 
-	const sorted1 = [...arr1].sort((a, b) => a - b);
-	const sorted2 = [...arr2].sort((a, b) => a - b);
+// 	const sorted1 = [...arr1].sort((a, b) => a - b);
+// 	const sorted2 = [...arr2].sort((a, b) => a - b);
 
-	for (let i = 0; i < sorted1.length; i++) {
-		if (sorted1[i] !== sorted2[i]) return false;
-	}
+// 	for (let i = 0; i < sorted1.length; i++) {
+// 		if (sorted1[i] !== sorted2[i]) return false;
+// 	}
 
-	return true;
+// 	return true;
+// }
+
+// // examples
+// areArraysEqual([1, 2, 3], [3, 1, 2]); // true
+// areArraysEqual([1, 2, 2], [2, 1, 1]); // false
+
+
+
+// MIT TASK ZS
+
+function singleNumber(nums: number[]): number {
+  let result = 0;
+
+  for (const num of nums) {
+    result ^= num;
+  }
+
+  return result;
 }
-
-// examples
-areArraysEqual([1, 2, 3], [3, 1, 2]); // true
-areArraysEqual([1, 2, 2], [2, 1, 1]); // false
