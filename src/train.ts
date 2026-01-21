@@ -630,14 +630,38 @@ Database validation
 
 
 
-// MIT TASK ZS
+// // MIT TASK ZS
 
-function singleNumber(nums: number[]): number {
-  let result = 0;
+// function singleNumber(nums: number[]): number {
+//   let result = 0;
 
-  for (const num of nums) {
-    result ^= num;
-  }
+//   for (const num of nums) {
+//     result ^= num;
+//   }
 
-  return result;
+//   return result;
+// }
+
+// MIT TASK ZT
+
+function firstUniqueCharIndex(s: string): number {
+    const charCount: Map<string, number> = new Map();
+    
+    for (const char of s) {
+        charCount.set(char, (charCount.get(char) || 0) + 1);
+    }
+
+    for (let i = 0; i < s.length; i++) {
+        if (charCount.get(s[i]) === 1) {
+            return i;
+        }
+    }
+
+    return -1;
 }
+
+// Test
+console.log(firstUniqueCharIndex("stamp"));  // 0 (chunki 's' birinchi takrorlanmagan harf)
+console.log(firstUniqueCharIndex("aabbcc"));  // -1 (hamma harflar takrorlangan)
+console.log(firstUniqueCharIndex("loveleetcode"));  // 2 (chunki 'v' birinchi takrorlanmagan harf)
+console.log(firstUniqueCharIndex("aabb"));  // -1
