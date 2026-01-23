@@ -642,26 +642,52 @@ Database validation
 //   return result;
 // }
 
-// MIT TASK ZT
+// // MIT TASK ZT
 
-function firstUniqueCharIndex(s: string): number {
-    const charCount: Map<string, number> = new Map();
+// function firstUniqueCharIndex(s: string): number {
+//     const charCount: Map<string, number> = new Map();
     
-    for (const char of s) {
-        charCount.set(char, (charCount.get(char) || 0) + 1);
-    }
+//     for (const char of s) {
+//         charCount.set(char, (charCount.get(char) || 0) + 1);
+//     }
 
-    for (let i = 0; i < s.length; i++) {
-        if (charCount.get(s[i]) === 1) {
-            return i;
-        }
-    }
+//     for (let i = 0; i < s.length; i++) {
+//         if (charCount.get(s[i]) === 1) {
+//             return i;
+//         }
+//     }
 
-    return -1;
+//     return -1;
+// }
+
+// // Test
+// console.log(firstUniqueCharIndex("stamp"));  // 0 (chunki 's' birinchi takrorlanmagan harf)
+// console.log(firstUniqueCharIndex("aabbcc"));  // -1 (hamma harflar takrorlangan)
+// console.log(firstUniqueCharIndex("loveleetcode"));  // 2 (chunki 'v' birinchi takrorlanmagan harf)
+// console.log(firstUniqueCharIndex("aabb"));  // -1
+
+
+
+function sumOfUnique(nums: number[]): number {
+  const count: Record<number, number> = {};
+  let sum = 0;
+
+  // 1️⃣ Necha marta kelganini sanaymiz
+  for (const num of nums) {
+    count[num] = (count[num] ?? 0) + 1;
+  }
+
+  // 2️⃣ Faqat 1 marta kelganlarni qo‘shamiz
+  for (const num in count) {
+    if (count[num] === 1) {
+      sum += Number(num);
+    }
+  }
+
+  return sum;
 }
 
-// Test
-console.log(firstUniqueCharIndex("stamp"));  // 0 (chunki 's' birinchi takrorlanmagan harf)
-console.log(firstUniqueCharIndex("aabbcc"));  // -1 (hamma harflar takrorlangan)
-console.log(firstUniqueCharIndex("loveleetcode"));  // 2 (chunki 'v' birinchi takrorlanmagan harf)
-console.log(firstUniqueCharIndex("aabb"));  // -1
+sumOfUnique([1, 2, 3, 2]);      // 4  (1 + 3)
+sumOfUnique([1, 1, 1, 1]);     // 0
+sumOfUnique([5, 6, 7, 8]);     // 26
+sumOfUnique([10]);             // 10
