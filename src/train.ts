@@ -668,26 +668,52 @@ Database validation
 
 
 
-function sumOfUnique(nums: number[]): number {
-  const count: Record<number, number> = {};
-  let sum = 0;
+// function sumOfUnique(nums: number[]): number {
+//   const count: Record<number, number> = {};
+//   let sum = 0;
 
-  // 1️⃣ Necha marta kelganini sanaymiz
+//   // 1️⃣ Necha marta kelganini sanaymiz
+//   for (const num of nums) {
+//     count[num] = (count[num] ?? 0) + 1;
+//   }
+
+//   // 2️⃣ Faqat 1 marta kelganlarni qo‘shamiz
+//   for (const num in count) {
+//     if (count[num] === 1) {
+//       sum += Number(num);
+//     }
+//   }
+
+//   return sum;
+// }
+
+// sumOfUnique([1, 2, 3, 2]);      // 4  (1 + 3)
+// sumOfUnique([1, 1, 1, 1]);     // 0
+// sumOfUnique([5, 6, 7, 8]);     // 26
+// sumOfUnique([10]);             // 10
+
+
+
+// MIT TASK ZV 
+function moveZeroes(nums: number[]): number[] {
+  const result: number[] = [];
+  let zeroCount = 0;
+
   for (const num of nums) {
-    count[num] = (count[num] ?? 0) + 1;
-  }
-
-  // 2️⃣ Faqat 1 marta kelganlarni qo‘shamiz
-  for (const num in count) {
-    if (count[num] === 1) {
-      sum += Number(num);
+    if (num === 0) {
+      zeroCount++;
+    } else {
+      result.push(num);
     }
   }
 
-  return sum;
+  while (zeroCount > 0) {
+    result.push(0);
+    zeroCount--;
+  }
+
+  return result;
 }
 
-sumOfUnique([1, 2, 3, 2]);      // 4  (1 + 3)
-sumOfUnique([1, 1, 1, 1]);     // 0
-sumOfUnique([5, 6, 7, 8]);     // 26
-sumOfUnique([10]);             // 10
+// Test
+console.log(moveZeroes([0, 1, 0, 3, 12])); // [1, 3, 12, 0, 0]
